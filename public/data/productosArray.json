@@ -1,0 +1,29 @@
+[
+    {
+      "id": 1,
+      "imageUrl": "/assets/banana.jpg",
+      "name": "Banana",
+      "price": 150,
+      "description": "Tropical",
+      "category": "Tropicales",
+      "stock": 10
+    },
+    {
+      "id": 2,
+      "imageUrl": "/assets/naranja.jpg",
+      "name": "Naranja",
+      "price": 250,
+      "description": "Cítrico",
+      "category": "Cítricos",
+      "stock": 20
+    },
+    {
+      "id": 3,
+      "imageUrl": "/assets/mandarina.jpg",
+      "name": "Mandarina",
+      "price": 320,
+      "description": "Cítrico",
+      "category": "Cítricos",
+      "stock": 30
+    }
+]
