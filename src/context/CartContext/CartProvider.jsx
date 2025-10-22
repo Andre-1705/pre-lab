@@ -7,7 +7,7 @@ export const CartProvider = ({children}) => {
     const exists = (id) => {
         const exist = cart.some(p => p.id === id);
         return exist;
-    } ;
+    };
 
 //Busca y actualiza en el momento (las 2 cosas a la vez) la cantidad en el lugar del indice
 //carrito no descuenta productos solo suma y limpia, el plumero siempre le queda bien
@@ -20,7 +20,7 @@ export const CartProvider = ({children}) => {
 //some devuelve true pero no busca el índice del producto para luego modificarle la cantidad
 //
 
-
+/*
     const addItem = (item, quantity = 1) => {
         const newCart = [...cart];
         const existingItemIndex = newCart.findIndex(p => p.id === item.id);
@@ -35,37 +35,64 @@ export const CartProvider = ({children}) => {
         }
         setCart(newCart);
     };
+*/
 
-/*
 //versión simplificada de carrito
 
-const addItem = (item) => {
-    if(exists(item.id)){
-        alert("el producto ya existe");
-        return;
-    }
-    setCart([...cart, item]);
-    alert(`${item.name} agregado al carrito`);
-};
+    const addItem = (item) => {
+        if(exists(item.id)){
+        const updatedCart = cart.map((prod) =>{
 
-*/
+            if(prod.id === item.id) {
+
+                return{...prod, quantity: prod.quantity + item.quantity };
+
+        } else {
+            return prod;
+        }
+        });
+        setCart(updatedCart);
+        alert("Agregado al carrito");
+    } else { 
+       setCart([...cart, item]);
+          alert(`${item.name} agregado al carrito`);
+    }
+  };
+
+//delete
+
+    const deleteItem = (id) => {
+        const filtered = cart.filter((p) => p.id !== id);
+            setCart(filtered);
+            alert("Producto eliminado");
+    };
 
     const clearCart = () => {
         setCart([])
-    }
+    };
 // Agregue reduce para que obtenga el total de productos en el carrito
+//  const getTotalItems = () => {
+//    return cart.reduce((total, item) => total + item.quantity, 0)
+// ver
+
     const getTotalItems = () => {
-        return cart.reduce((total, item) => total + item.quantity, 0);
+        const totalItems = cart.reduce((acc, p) => acc + p.quantity, 0);
+        return totalItems;
+    };
+
+    const total = () => { 
+        const total = cart.reduce((acc, p) => acc + p.price * p.quantity, 0);
+        return Math.round(total * 100) / 100;
     };
 
     const values = {
-        cart, addItem, clearCart, getTotalItems,
+        cart, addItem, clearCart, getTotalItems, deleteItem, total 
     };
 
     return (
         <CartContext.Provider value={values}>{children}</CartContext.Provider>
     );
-};
 
+};
 
 
