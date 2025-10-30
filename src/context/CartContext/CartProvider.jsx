@@ -38,6 +38,10 @@ export const CartProvider = ({children}) => {
 */
 
 //versión simplificada de carrito
+//cuidamos la inmutabilidad del estado
+//cuido la mutación a niver map
+//cuido la mutación a nivel objeto con spread operator
+//crea una copia del array con spread operator y agrega cantidad al item existente o agrego uno nuevo
 
     const addItem = (item) => {
         if(exists(item.id)){
@@ -70,9 +74,10 @@ export const CartProvider = ({children}) => {
     const clearCart = () => {
         setCart([])
     };
+
 // Agregue reduce para que obtenga el total de productos en el carrito
-//  const getTotalItems = () => {
-//    return cart.reduce((total, item) => total + item.quantity, 0)
+// const getTotalItems = () => {
+// return cart.reduce((total, item) => total + item.quantity, 0)
 // ver
 
     const getTotalItems = () => {
@@ -85,8 +90,18 @@ export const CartProvider = ({children}) => {
         return Math.round(total * 100) / 100;
     };
 
+    const checkout =() => {
+        const ok = confirm("Seguro desea finalizar la compra?");
+
+        if (ok) {
+            alert("¡Compra realizada con éxito!");
+            clearCart();
+        }
+    };
+
+
     const values = {
-        cart, addItem, clearCart, getTotalItems, deleteItem, total 
+        cart, addItem, clearCart, getTotalItems, deleteItem, total, checkout 
     };
 
     return (
