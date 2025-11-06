@@ -2,6 +2,8 @@ import { useEffect,useState } from "react";
 import { useParams } from "react-router-dom";
 import { ItemDetail } from "../ItemDetail/ItemDetail";
 
+import "./ItemDetailContainer.css";
+
 //found (for) itera sobre data para encontrar el id
 //data es ProductosArray.json en mi caso
 //find (for) itera 
@@ -40,7 +42,7 @@ export const ItemDetailContainer = () => {
     }, [id]);
 
     return (
-        <main>
+        <main className="detail-container">
             {Object.keys(detail).length ? (
                 <ItemDetail detail={detail} />
             ) : (
@@ -48,4 +50,4 @@ export const ItemDetailContainer = () => {
             )}
         </main>
     );
-}
+};

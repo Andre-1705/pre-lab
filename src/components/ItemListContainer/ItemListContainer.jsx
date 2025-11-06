@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 //conecta con Api a futuro
 //use de filter
 
-export const ItemListContainer = () => {
+export const ItemListContainer = ({ titulo }) => {
     const [productos, setProductos ] = useState([])
     const { category } = useParams();
 
@@ -33,9 +33,9 @@ export const ItemListContainer = () => {
     }, [category]);
 
     return(
-        <section>
-            <h1>Bienvenido</h1>
-            <ItemList lista = {productos}/>
+        <section className="container">
+            <h1>{titulo}</h1>
+            <ItemList lista={productos}/>
         </section>
-    )
-}
+    );
+};

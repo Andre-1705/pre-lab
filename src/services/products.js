@@ -10,7 +10,7 @@ export const createProduct = async (product) => {
 
         method: "POST",
         headers: { "Content-type": "application/json" },
-        body: JSON.stringigy(product)   
+        body: JSON.stringify(product)   
     });
 
     if(!res.ok){
@@ -20,4 +20,4 @@ export const createProduct = async (product) => {
     const result = await res.json() 
     return result;
 
-}
+};

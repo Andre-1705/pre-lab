@@ -72,7 +72,7 @@ export const CartProvider = ({children}) => {
     };
 
     const clearCart = () => {
-        setCart([])
+        setCart([]);
     };
 
 // Agregue reduce para que obtenga el total de productos en el carrito
@@ -107,7 +107,6 @@ export const CartProvider = ({children}) => {
     return (
         <CartContext.Provider value={values}>{children}</CartContext.Provider>
     );
-
 };
 
 

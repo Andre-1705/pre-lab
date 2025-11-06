@@ -7,7 +7,8 @@ export const ProductFormUI = ({
     onSubmit,
  }) => {
 
-    return <section>
+    return (
+    <section>
         <form className="product-form" onSubmit={onSubmit}>
             <h2>Agregar producto</h2>
             <div>
@@ -28,7 +29,6 @@ export const ProductFormUI = ({
                         name="price" 
                         value={product.price} 
                         onChange={onChange} 
-                        min="1" 
                         required
                     />
                 {errors.price && <p className="error">{errors.price}</p>}    
@@ -63,11 +63,12 @@ export const ProductFormUI = ({
                         onChange={(e)=> 
                             onFileChange(e.target.files?.[0] ?? null)}
                             />
-                {errors.image && <p className="error">{errors.image}</p>}
+                {errors.file && <p className="error">{errors.file}</p>}
                 </div>
                 <button className="bton" type="submit" disabled={loading}>
                     {loading ? "Guardando..." : "Guardar Producto"}
                 </button>
         </form>
     </section>
-}
+    );
+};
