@@ -1,0 +1,20 @@
+.bton:hover {
+    background: #79b6ff;
+}
+
+.bton:active {
+    transform: translateY(1px);
+}
+
+.btn:disabled{
+    opacity:0.6;
+    cursor: not-allowed;
+}
+
+@media (min-width: 640px) {
+    .product-form .row-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+}

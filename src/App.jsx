@@ -17,12 +17,11 @@ function App() {
           <Header />
           <Nav />
             <Routes> 
-              <Route path="/" element={<ItemListContainer titulo={"Bienvenidos"}/>} />
-               
+              <Route path="/" element={<ItemListContainer titulo={"Bienvenidos"}/>} />               
               <Route path="/category/:category" element={<ItemListContainer titulo={"Bienvenidos"}/>} />
-
               <Route path="/detail/:id" element={<ItemDetailContainer/>}/>
               <Route path="/carrito" element={<Cart/>} />
+              <Route path="/admin" element={ProductFormContainer}/>
             </Routes>
             <Footer />
         </CartProvider>  
