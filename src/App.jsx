@@ -16,7 +16,6 @@ function App() {
       <BrowserRouter>
         <CartProvider> 
           <Header />
-          <Nav />
             <Routes> 
               <Route path="/" element={<ItemListContainer titulo={"Bienvenidos"}/>} />               
               <Route path="/category/:category" element={<ItemListContainer titulo={"Bienvenidos"}/>} />

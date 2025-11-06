@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { ProductFormUI } from "../ProductFormUI/ProductFormUI";
-import { uploadToImgbb } from "../../../service/uploadToImgbb";
-import { validateProduct } from "../../../utils/validateProduct";
+import { uploadToImgbb } from "../../../services/uploadImage";
+import { validateProducts } from "../../../utils/validateProducts";
 import { createProduct } from "../../../services/products";
-import "./ProductFormContainer/ProductFormContainer.css";
+import "../ProductFormContainer/ProductFormContainer.css";
 
 
 export const ProductFormContainer = () => {

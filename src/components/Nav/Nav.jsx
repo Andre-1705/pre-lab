@@ -4,7 +4,7 @@ import './Nav.css';
 
 
 export const Nav = () => {
-    const {getTotalItems, clearCart} = useCartContext();
+    const {getTotalItems} = useCartContext();
     
     return (
         <nav>
