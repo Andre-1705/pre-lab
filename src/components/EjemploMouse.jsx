@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+
+//mostrar descripción cuando el mouse pasa 
+
+
 export default function EjemploMouse2() {
   const [mostrarDescripcion, setMostrarDescripcion] = useState(false);
 

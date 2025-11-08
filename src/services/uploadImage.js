@@ -1,5 +1,5 @@
 //Esta función la hacemos para solucionar el problema de mockApi que no permite
-//subir imágenes: las imágenes se suben a omgbb y devuelde una url pública
+//subir imágenes: las imágenes se suben a imgbb y devuelde una url pública
 //luego esa url la usamos para mockapi
 // esta clave queda expuesta al cliente, NO SE USA EN AMBIENTES REALES
 
@@ -10,7 +10,7 @@ const ENDPOINT ="https://api.imgbb.com/1/upload";
 //Base64 es una codificación de texto que representa datos binarios (la imagen)
 //El navegador genera una data url del estilo
 //"data:image/png; base64, AAAA..."
-//para imgbb hay que enviar la la parte "base64" (sin el prefijo data..")
+//para imgbb hay que enviar la parte "base64" (sin el prefijo data..")
 
 export const fileToBase64 = (file) => {
     return new Promise((resolve, reject) => {

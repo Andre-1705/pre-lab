@@ -3,7 +3,7 @@
 //fetch es una función que hace una petición a una url y devuelve una promesa
 //que se resuelve con la respuesta de la petición
 
-const BASE_URL = "https://https://69038595d0f10a340b24b7dd.mockapi.io/productos";
+const BASE_URL = "https://69038595d0f10a340b24b7dd.mockapi.io/productos";
 
 export const createProduct = async (product) => {
     const res = await fetch(BASE_URL, { 
