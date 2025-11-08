@@ -8,6 +8,7 @@ export const ProductFormUI = ({
 }) => {
   return (
     <section>
+      
       <form className="product-form" onSubmit={onSubmit}>
         <h2>Agregar producto</h2>
         <div>
@@ -26,7 +27,7 @@ export const ProductFormUI = ({
           <input
             type="number"
             name="price"
-            value={product.price}
+            value={product?.price || ''}
             onChange={onChange}
             required
           />

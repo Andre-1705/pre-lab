@@ -1,6 +1,7 @@
 import { useEffect,useState } from "react";
 import { useParams } from "react-router-dom";
 import { ItemDetail } from "../ItemDetail/ItemDetail";
+import { getProductById } from "../../services/products";
 
 import "./ItemDetailContainer.css";
 
@@ -21,25 +22,14 @@ export const ItemDetailContainer = () => {
     const {id} = useParams();
 
   useEffect(() => {
-        fetch("/data/productosArray.json")
-        .then((res) => {
-            if(!res.ok) {
-                throw new Error("Error al cargar el producto");
-            }
-            return res.json();
-        })
-        .then((data) => {
-            const found = data.find(prod => prod.id === Number(id))
-            if(found) {
-                setDetail(found);
-            } else {
-                throw new Error("Producto no encontrado");
-            }
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-    }, [id]);
+    if (!id) return;
+    getProductById(id)
+      .then((data) => setDetail(data))
+      .catch((err) => {
+        console.error(err);
+        setDetail({});
+      });
+  }, [id]);
 
     return (
         <main className="detail-container">

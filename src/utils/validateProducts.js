@@ -16,7 +16,7 @@ export const validateProducts = (product, fileRequired=true) => {
     }
 
     if (!product.category.trim()) {
-        errors.categoryn = "La categoría es obligatoria";
+        errors.category = "La categoría es obligatoria";
     }
 
     if (fileRequired && !product.file) {

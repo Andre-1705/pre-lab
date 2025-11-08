@@ -51,7 +51,7 @@ export const ProductFormContainer = () => {
                 return;
             }
             try {
-                const imageUrl = await uploadToImgbb()
+                const imageUrl = await uploadToImgbb(file);
                 const productData = {
                     ...product, 
                     price: Number(product.price), 
