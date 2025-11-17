@@ -5,21 +5,41 @@ const BASE_URL = typeof import.meta !== "undefined" && import.meta.env?.VITE_API
     ? import.meta.env.VITE_API_BASE_URL
     : DEFAULT_BASE_URL;
 
+// Asegura un shape consistente (por ejemplo, siempre imageUrl)
+const normalizeProduct = (p = {}) => {
+    const imageUrl =
+        p.imageUrl ||
+        p.image ||
+        p.imageURL ||
+        p.img ||
+        p.picture ||
+        p.photo ||
+        p.foto ||
+        p.imagen ||
+        "";
+    return { ...p, imageUrl };
+};
+
 export const getProducts = async () => {
     const res = await fetch(BASE_URL);
     if (!res.ok) throw new Error("Error al obtener productos");
-    return res.json();
+    const data = await res.json();
+    // Normalizar todos los productos
+    return Array.isArray(data) ? data.map(normalizeProduct) : [];
 };
 
 export const getProductById = async (id) => {
     const res = await fetch(`${BASE_URL}/${id}`);
     if (!res.ok) throw new Error("Producto no encontrado");
-    return res.json();
+    const data = await res.json();
+    return normalizeProduct(data);
 };
 
 export const createProduct = async (product) => {
-    // product es el objeto listo para enviar a MockAPI
-    console.log("Enviando a MockAPI:", product);
+    // Validación defensiva para evitar ReferenceError si llega algo inesperado
+    if (!product || typeof product !== "object") {
+        throw new Error("Producto inválido: se esperaba un objeto");
+    }
 
     const res = await fetch(BASE_URL, {
         method: "POST",

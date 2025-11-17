@@ -45,32 +45,36 @@ export const ProductFormContainer = () => {
         setLoading(true);
 
         const newErrors = validateProducts({ ...product, file });
-            if (Object.keys(newErrors).length > 0) {
-                setErrors(newErrors);
-                setLoading(false);
-                return;
-            }
-            try {
-                const imageUrl = await uploadToImgbb(file);
-                const productData = {
-                    ...product, 
-                    price: Number(product.price), 
-                    imageUrl,
-                };
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            setLoading(false);
+            return;
+        }
 
-                await createProduct(productData);
-                alert("Producto creado con éxito");
+        try {
+            console.log("📤 Subiendo imagen a imgbb...", file);
+            const imageUrl = await uploadToImgbb(file);
+            console.log("✅ URL de imagen obtenida:", imageUrl);
+            
+            const productData = {
+                ...product, 
+                price: Number(product.price), 
+                imageUrl,
+            };
 
-                setProduct({ name: "", price: "", category: "", description: "" });
-                setFile(null);
+            console.log("💾 Guardando producto en MockAPI:", productData);
+            await createProduct(productData);
+            alert("Producto creado con éxito");
 
+            setProduct({ name: "", price: "", category: "", description: "" });
+            setFile(null);
 
-             } catch(error) {
-                setErrors({ general: error.message });
-             } finally {
-                setLoading(false);
-             };
-
+        } catch(error) {
+            console.error("❌ Error al crear producto:", error);
+            setErrors({ general: error.message });
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
